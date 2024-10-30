@@ -10,7 +10,7 @@ dotenv.config()
 
 //core
 const prefix = "m!"
-export const MarkerDiedPlayer = "Color/DiedPlayer";
+export const MarkerDiedPlayer = "Marker/DiedPlayer";
 export const ColorRed = "Color/Red";
 export const ColorBlue = "Color/Blue";
 export const ColorYellow = "Color/Yellow";
