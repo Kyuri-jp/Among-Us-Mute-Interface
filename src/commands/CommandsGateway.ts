@@ -7,6 +7,7 @@ import { RunOnGameCommand } from "./voice/OnGame";
 import { MarkerDiedPlayer } from "..";
 import { RunOnDiscussCommand } from "./voice/OnDiscuss";
 import { RunResetCommand } from "./voice/Reset";
+import { RunDiedCommand } from "./voice/Died";
 
 export async function CommandsGateway(args: string[], message: OmitPartialGroupDMChannel<Message<boolean>>) {
     switch (args[0]) {
@@ -27,6 +28,9 @@ export async function CommandsGateway(args: string[], message: OmitPartialGroupD
             break;
         case "ondiscuss":
             await RunOnDiscussCommand(args, message, MarkerDiedPlayer);
+            break;
+        case "died":
+            await RunDiedCommand(args,message)
             break;
         case "reset":
             await RunResetCommand(args, message,MarkerDiedPlayer);
