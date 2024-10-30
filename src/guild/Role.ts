@@ -29,6 +29,8 @@ export async function RoleExists(roleName: string) {
 }
 
 export async function CreateRole(roleName: string, color: number) {
+    if (await RoleExists(roleName))
+        return;
     (await guild).roles.create({
         name: roleName,
         color: color
