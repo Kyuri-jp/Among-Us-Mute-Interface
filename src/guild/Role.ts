@@ -1,5 +1,6 @@
-import { GuildMember } from "discord.js";
-import { guild } from "..";
+import { GuildMember } from 'discord.js';
+
+import { guild } from '../';
 
 export async function GetRoleData(roleName: string) {
     const guildId = process.env.GUILD;

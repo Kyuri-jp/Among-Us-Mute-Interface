@@ -1,6 +1,7 @@
-import { Role } from "discord.js";
-import { GetUsers } from "./Property"
-import { HasRole } from "../../guild/Role";
+import { Role } from 'discord.js';
+
+import { HasRole } from '../../guild/Role';
+import { GetUsers } from './Property';
 
 export async function DeafAllUser(channelID: string, selectRole?: Role, ignore?: boolean) {
     await DeafControlAllUser(channelID, true, selectRole, ignore);

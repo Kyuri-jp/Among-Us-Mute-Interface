@@ -1,10 +1,11 @@
-import { OmitPartialGroupDMChannel, Message, ActivityType } from "discord.js";
-import { GetRoleData } from "../../guild/Role";
-import { UndeafAllUser } from "../../channel/voice/Deaf";
-import { UnmuteAllUser } from "../../channel/voice/Mute";
-import { GetUsers } from "../../channel/voice/Property";
-import { CommandBase } from "../interfaces/CommandBase";
-import { client, MarkerDiedPlayer } from "../..";
+import { ActivityType, Message, OmitPartialGroupDMChannel } from 'discord.js';
+
+import { client, MarkerDiedPlayer } from '../..';
+import { UndeafAllUser } from '../../channel/voice/Deaf';
+import { UnmuteAllUser } from '../../channel/voice/Mute';
+import { GetUsers } from '../../channel/voice/Property';
+import { GetRoleData } from '../../guild/Role';
+import { CommandBase } from '../interfaces/CommandBase';
 
 export class Reset implements CommandBase {
     async Run(args: string[], message: OmitPartialGroupDMChannel<Message<boolean>>) {

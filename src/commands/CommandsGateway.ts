@@ -1,13 +1,14 @@
-import { Message, OmitPartialGroupDMChannel } from "discord.js";
-import { CommandBase } from "./interfaces/CommandBase";
-import { Mute } from "./voice/Mute";
-import { Deaf } from "./voice/Deaf";
-import { OnGame } from "./game/OnGame";
-import { OnDiscuss } from "./game/OnDiscuss";
-import { Died } from "./voice/Died";
-import { Reset } from "./game/Reset";
-import { Undeaf } from "./voice/Undeaf";
-import { Unmute } from "./voice/Unmute";
+import { Message, OmitPartialGroupDMChannel } from 'discord.js';
+
+import { OnDiscuss } from './game/OnDiscuss';
+import { OnGame } from './game/OnGame';
+import { Reset } from './game/Reset';
+import { CommandBase } from './interfaces/CommandBase';
+import { Deaf } from './voice/Deaf';
+import { Died } from './voice/Died';
+import { Mute } from './voice/Mute';
+import { Undeaf } from './voice/Undeaf';
+import { Unmute } from './voice/Unmute';
 
 const commands = new Map<string, CommandBase>();
 commands.set("mute", new Mute);

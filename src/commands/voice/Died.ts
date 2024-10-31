@@ -1,9 +1,10 @@
-import { OmitPartialGroupDMChannel, Message } from "discord.js";
-import { MarkerDiedPlayer } from "../..";
-import { GetRoleData, HasRole } from "../../guild/Role";
-import { CommandBase } from "../interfaces/CommandBase";
-import { GetUsers } from "../../channel/voice/Property";
-import { ToShiftedUpperCase } from "../../core/text/ToShiiftedUpperCase";
+import { Message, OmitPartialGroupDMChannel } from 'discord.js';
+
+import { MarkerDiedPlayer } from '../..';
+import { GetUsers } from '../../channel/voice/Property';
+import { ToShiftedUpperCase } from '../../core/text/ToShiiftedUpperCase';
+import { GetRoleData, HasRole } from '../../guild/Role';
+import { CommandBase } from '../interfaces/CommandBase';
 
 export class Died implements CommandBase {
     async Run(args: string[], message: OmitPartialGroupDMChannel<Message<boolean>>) {

@@ -1,8 +1,9 @@
-import { OmitPartialGroupDMChannel, Message, ActivityType } from "discord.js";
-import { Discussing } from "../../au/voice/Discussing";
-import { GetRoleData } from "../../guild/Role";
-import { CommandBase } from "../interfaces/CommandBase";
-import { client, MarkerDiedPlayer } from "../..";
+import { ActivityType, Message, OmitPartialGroupDMChannel } from 'discord.js';
+
+import { client, MarkerDiedPlayer } from '../..';
+import { Discussing } from '../../au/voice/Discussing';
+import { GetRoleData } from '../../guild/Role';
+import { CommandBase } from '../interfaces/CommandBase';
 
 export class OnDiscuss implements CommandBase {
     async Run(args: string[], message: OmitPartialGroupDMChannel<Message<boolean>>) {

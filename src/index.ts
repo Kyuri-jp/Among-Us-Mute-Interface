@@ -1,9 +1,10 @@
 //libs
-import { ActivityType, Client, Colors, GatewayIntentBits } from "discord.js";
-import dotenv from 'dotenv'
-import { MessageCreated } from "./events/textChannel/MessageCreated";
-import { CreateRole, RoleExists } from "./guild/Role";
-import { ArgumentsParser } from "./core/text/ArgumentsParser";
+import { ActivityType, Client, Colors, GatewayIntentBits } from 'discord.js';
+import dotenv from 'dotenv';
+
+import { ArgumentsParser } from './core/text/ArgumentsParser';
+import { MessageCreated } from './events/textChannel/MessageCreated';
+import { CreateRole, RoleExists } from './guild/Role';
 
 //.envファイルを読み込む
 dotenv.config()

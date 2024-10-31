@@ -1,5 +1,6 @@
-import { Guild, GuildMember } from "discord.js";
-import { GetUserRole } from "../../guild/Role";
+import { Guild, GuildMember } from 'discord.js';
+
+import { GetUserRole } from '../../guild/Role';
 
 export async function GetColors (guild:Guild) {
     return guild.roles.cache;

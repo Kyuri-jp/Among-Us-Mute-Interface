@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message } from 'discord.js';
 
 export function GetUserFromMention(message: Message) {
     // メッセージ内のメンションを取得

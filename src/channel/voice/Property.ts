@@ -1,5 +1,6 @@
-import { VoiceChannel } from "discord.js";
-import { client } from "../..";
+import { VoiceChannel } from 'discord.js';
+
+import { client } from '../..';
 
 export async function GetUsers(channelID: string) {
     const channel = await client.channels.fetch(channelID);

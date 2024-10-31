@@ -1,5 +1,6 @@
-import { Message, OmitPartialGroupDMChannel } from "discord.js";
-import { CommandsGateway } from "../../commands/CommandsGateway";
+import { Message, OmitPartialGroupDMChannel } from 'discord.js';
+
+import { CommandsGateway } from '../../commands/CommandsGateway';
 
 export async function MessageCreated(prefix: string, args: string[], message: OmitPartialGroupDMChannel<Message<boolean>>) {
     if (message.content.includes(prefix)){

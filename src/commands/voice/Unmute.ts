@@ -1,6 +1,7 @@
-import { Message, OmitPartialGroupDMChannel } from "discord.js";
-import { UnmuteAllUser } from "../../channel/voice/Mute";
-import { CommandBase } from "../interfaces/CommandBase";
+import { Message, OmitPartialGroupDMChannel } from 'discord.js';
+
+import { UnmuteAllUser } from '../../channel/voice/Mute';
+import { CommandBase } from '../interfaces/CommandBase';
 
 export class Unmute implements CommandBase {
     async Run(args: string[], message: OmitPartialGroupDMChannel<Message<boolean>>) {
