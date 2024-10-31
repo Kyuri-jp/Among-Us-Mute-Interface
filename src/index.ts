@@ -63,7 +63,7 @@ client.once("ready", async () => {
   await CreateRole(ColorRose, 0xE04462)
 
   console.log("This bot launched." +
-    "Version : 0.0.1b"
+    "Version : 0.2.0"
   );
 
   client.user?.setPresence({

@@ -1,7 +1,7 @@
 {
   "name": "muter",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.2.0",
+  "description": "Desktop player only discord mute bot for Among Us.",
   "main": ".src/index.ts",
   "scripts": {
     "test": "ts-node src/index.ts",
