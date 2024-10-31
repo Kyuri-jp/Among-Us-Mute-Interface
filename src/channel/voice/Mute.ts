@@ -16,10 +16,10 @@ async function MuteControlAllUser(channelID: string, type: boolean, selectRole?:
         if (ignore === undefined) {
             if (!selectRole) {
                 await member.voice.setMute(type);
-                console.log(`Mute ${type} : ${member.displayName}`)
+                console.info(`${member.displayName} was controled deaf to ${type}`)
             } else if (selectRole && await HasRole(member, selectRole.name)) {
                 await member.voice.setMute(type);
-                console.log(`Mute ${type} : ${member.displayName}`)
+                console.info(`${member.displayName} was controled deaf to ${type}`)
             }
         } else {
             console.log("Ingored Mute")
@@ -27,7 +27,7 @@ async function MuteControlAllUser(channelID: string, type: boolean, selectRole?:
                 console.warn("Role is undefined")
             }else if (!await HasRole(member, selectRole.name)) {
                 await member.voice.setMute(type);
-                console.log(`Mute ${type} : ${member.displayName}`)
+                console.info(`${member.displayName} was controled deaf to ${type}`)
             }
         }
     }
