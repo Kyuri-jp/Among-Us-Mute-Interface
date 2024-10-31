@@ -6,13 +6,13 @@ export async function GetUsers(channelID: string) {
 
     // チャンネルがボイスチャンネルであるか確認する
     if (!channel || !(channel instanceof VoiceChannel)) {
-        console.error("指定されたチャンネルはボイスチャンネルではありません。");
+        console.error("The channel is not voice channel.");
         throw new Error("Not a voice channel.");
     }
 
     // チャンネルにメンバーがいるか確認する
     if (channel.members.size === 0) {
-        console.error("このチャンネルには誰も参加していません");
+        console.error("The voice channel is not joined by any users.");
         throw new Error("No members in the channel.");
     }
 

@@ -15,8 +15,9 @@ export class Reset implements CommandBase {
         await UnmuteAllUser((args[1]));
         await UndeafAllUser((args[1]));
         for (const [, member] of await GetUsers((args[1]))) {
-            member.roles.remove(await GetRoleData(MarkerDiedPlayer))
+            await member.roles.remove(await GetRoleData(MarkerDiedPlayer))
+            console.info(`${member.displayName} was removed died role.`)
         }
-        message.channel.send("Reset roles and more.");
+        await message.channel.send("Reset roles and voice state.");
     }
 }

@@ -9,6 +9,6 @@ export class Mute implements CommandBase {
             return;
         }
         await MuteAllUser(args[1]);
-        message.channel.send("Mute all user.")
+        await message.channel.send("Mute all user.")
     }
 }

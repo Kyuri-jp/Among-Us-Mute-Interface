@@ -9,6 +9,6 @@ export class Undeaf implements CommandBase {
             return;
         }
         await UndeafAllUser(args[1]);
-        message.channel.send("Undeaf all user.")
+        await message.channel.send("Undeaf all user.")
     }
 }

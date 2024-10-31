@@ -1,5 +1,5 @@
 //libs
-import { Client, Colors, GatewayIntentBits } from "discord.js";
+import { ActivityType, Client, Colors, GatewayIntentBits } from "discord.js";
 import dotenv from 'dotenv'
 import { MessageCreated } from "./events/textChannel/MessageCreated";
 import { CreateRole, RoleExists } from "./guild/Role";
@@ -39,6 +39,10 @@ export const client = new Client({
   ],
 });
 
+client.user?.setPresence({
+  activities: [{ name: "待機中...", type: ActivityType.Custom }]
+});
+
 
 client.once("ready", async () => {
   //init
@@ -63,7 +67,7 @@ client.once("ready", async () => {
   }
 
   console.log("This bot launched." +
-    "Version : 0.0.1a"
+    "Version : 0.0.1b"
   );
 });
 

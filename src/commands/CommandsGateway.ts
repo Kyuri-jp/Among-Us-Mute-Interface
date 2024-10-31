@@ -22,7 +22,7 @@ commands.set("ondiscuss", new OnDiscuss);
 export async function CommandsGateway(args: string[], message: OmitPartialGroupDMChannel<Message<boolean>>) {
     if (!Array.from(commands.keys()).includes(args[0])) {
         console.warn(`${args[0]} was not found in commands.`);
-        message.channel.send(`${args[0]} was not found in commands.`);
+        await message.channel.send(`${args[0]} was not found in commands.`);
         return;
     }
     await commands.get(args[0])?.Run(args, message).catch(async error =>{

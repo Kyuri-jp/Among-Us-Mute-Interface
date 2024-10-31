@@ -9,6 +9,6 @@ export class Unmute implements CommandBase {
             return;
         }
         await UnmuteAllUser(args[1]);
-        message.channel.send("Unmute all user.")
+        await message.channel.send("Unmute all user.")
     }
 }

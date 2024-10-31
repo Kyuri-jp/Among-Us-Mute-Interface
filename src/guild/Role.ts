@@ -8,7 +8,7 @@ export async function GetRoleData(roleName: string) {
     }
 
     if (!guild) {
-        console.error("指定されたギルドが見つかりません。");
+        console.error(`Selected guild was not found.`);
         throw new Error("Guild not found.");
     }
 
@@ -16,7 +16,7 @@ export async function GetRoleData(roleName: string) {
     const role = (await guild).roles.cache.find((role) => role.name === roleName);
 
     if (!role) {
-        console.error(`指定された役職 ${roleName} が見つかりません。`);
+        console.error(`Selected role : ${roleName} was not found.`);
         throw new Error("Role not found.");
     }
     return role;
@@ -53,7 +53,7 @@ export async function HasRole(member: GuildMember, roleName: string): Promise<bo
     const role = await GetRoleData(roleName);
 
     if (!role) {
-        console.error(`指定されたロール ${roleName} が見つかりません。`);
+        console.error(`Selected role : ${roleName} was not found.`);
         return false;
     }
 
