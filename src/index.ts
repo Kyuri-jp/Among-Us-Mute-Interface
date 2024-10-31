@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 import { ArgumentsParser } from './core/text/ArgumentsParser';
 import { MessageCreated } from './events/textChannel/MessageCreated';
-import { CreateRole, RoleExists } from './guild/Role';
+import { CreateRole } from './guild/Role';
 
 //.envファイルを読み込む
 dotenv.config()
@@ -43,26 +43,24 @@ export const client = new Client({
 
 client.once("ready", async () => {
   //init
-  if (!(await RoleExists(MarkerDiedPlayer))) {
-    await CreateRole(MarkerDiedPlayer, Colors.DarkRed)
-    await CreateRole(ColorRed,Colors.Red)
-    await CreateRole(ColorBlue,Colors.Blue)
-    await CreateRole(ColorGreen,Colors.Green)
-    await CreateRole(ColorYellow,Colors.Yellow)
-    await CreateRole(ColorWhite,Colors.White)
-    await CreateRole(ColorBlack,Colors.NotQuiteBlack)
-    await CreateRole(ColorGray,Colors.Grey)
-    await CreateRole(ColorLime,0x94FE31)
-    await CreateRole(ColorPink,Colors.LuminousVividPink)
-    await CreateRole(ColorBrown,0x3C0000)
-    await CreateRole(ColorOrange,Colors.Orange)
-    await CreateRole(ColorCyan,Colors.Aqua)
-    await CreateRole(ColorBanana,0xFEE360)
-    await CreateRole(ColorCoral,0xFD5E5E)
-    await CreateRole(ColorMaroon,0xA13131)
-    await CreateRole(ColorTan,0x474939)
-    await CreateRole(ColorRose,0xE04462)
-  }
+  await CreateRole(MarkerDiedPlayer, Colors.DarkRed)
+  await CreateRole(ColorRed, Colors.Red)
+  await CreateRole(ColorBlue, Colors.Blue)
+  await CreateRole(ColorGreen, Colors.Green)
+  await CreateRole(ColorYellow, Colors.Yellow)
+  await CreateRole(ColorWhite, Colors.White)
+  await CreateRole(ColorBlack, Colors.NotQuiteBlack)
+  await CreateRole(ColorGray, Colors.Grey)
+  await CreateRole(ColorLime, 0x94FE31)
+  await CreateRole(ColorPink, Colors.LuminousVividPink)
+  await CreateRole(ColorBrown, 0x3C0000)
+  await CreateRole(ColorOrange, Colors.Orange)
+  await CreateRole(ColorCyan, Colors.Aqua)
+  await CreateRole(ColorBanana, 0xFEE360)
+  await CreateRole(ColorCoral, 0xFD5E5E)
+  await CreateRole(ColorMaroon, 0xA13131)
+  await CreateRole(ColorTan, 0x474939)
+  await CreateRole(ColorRose, 0xE04462)
 
   console.log("This bot launched." +
     "Version : 0.0.1b"
