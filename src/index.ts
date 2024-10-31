@@ -68,6 +68,7 @@ client.once("ready", async () => {
 });
 
 client.on("messageCreate", async (message) => {
+  if (message.author.id === client.user?.id) return;
   console.info(`Message caught : ${message.content}`);
   const args = ArgumentsParser(message.content, prefix, "/");
   console.info(`Argument is : ${args}`);

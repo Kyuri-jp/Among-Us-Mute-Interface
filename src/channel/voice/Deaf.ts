@@ -12,14 +12,13 @@ export async function UndeafAllUser(channelID: string, selectRole?: Role, ignore
 
 async function DeafControlAllUser(channelID: string, type: boolean, selectRole?: Role, ignore?: boolean) {
     for (const [, member] of await GetUsers(channelID)) {
-        console.log(`Deaf Target : ${member.displayName}`)
         if (ignore === undefined) {
             if (!selectRole) {
                 await member.voice.setDeaf(type);
-                console.log(`deaf ${type} : ${member.displayName}`)
+                console.log(`${member.displayName} was deafed.`)
             } else if (selectRole && await HasRole(member, selectRole.name)) {
                 await member.voice.setDeaf(type);
-                console.log(`deaf ${type} : ${member.displayName}`)
+                console.log(`${member.displayName} was deafed.`)
             }
         } else {
             console.log("Ingored Deaf")
@@ -27,7 +26,7 @@ async function DeafControlAllUser(channelID: string, type: boolean, selectRole?:
                 console.warn("Role is undefined")
             }else if (!await HasRole(member, selectRole.name)) {
                 await member.voice.setDeaf(type);
-                console.log(`deaf ${type} : ${member.displayName}`)
+                console.log(`${member.displayName} was deafed.`)
             }
         }
     }

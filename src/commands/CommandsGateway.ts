@@ -2,10 +2,10 @@ import { Message, OmitPartialGroupDMChannel } from "discord.js";
 import { CommandBase } from "./interfaces/CommandBase";
 import { Mute } from "./voice/Mute";
 import { Deaf } from "./voice/Deaf";
-import { OnGame } from "./voice/OnGame";
-import { OnDiscuss } from "./voice/OnDiscuss";
+import { OnGame } from "./game/OnGame";
+import { OnDiscuss } from "./game/OnDiscuss";
 import { Died } from "./voice/Died";
-import { Reset } from "./voice/Reset";
+import { Reset } from "./game/Reset";
 import { Undeaf } from "./voice/Undeaf";
 import { Unmute } from "./voice/Unmute";
 
@@ -25,5 +25,8 @@ export async function CommandsGateway(args: string[], message: OmitPartialGroupD
         message.channel.send(`${args[0]} was not found in commands.`);
         return;
     }
-    commands.get(args[0])?.Run(args, message);
+    await commands.get(args[0])?.Run(args, message).catch(async error =>{
+        console.error(error)
+        await message.channel.send(error)
+    });
 }
