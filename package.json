@@ -1,5 +1,5 @@
 {
-  "name": "muter",
+  "name": "amongus_mute_interface",
   "version": "0.2.0",
   "description": "Desktop player only discord mute bot for Among Us.",
   "main": ".src/index.ts",
