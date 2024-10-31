@@ -11,6 +11,7 @@ export class Died implements CommandBase {
             if (await HasRole(member, "Color/" + ToShiftedUpperCase(args[2]))) {
                 await member.roles.add((await GetRoleData(MarkerDiedPlayer)).id);
                 await message.channel.send(`Role added to ${member.displayName}`);
+                console.info(`${member.displayName} was added died role.`)
             }
         }
     }
