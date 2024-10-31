@@ -29,6 +29,7 @@ export const ColorBanana = "Color/Banana";
 export const ColorCoral = "Color/Coral";
 export const ColorMaroon = "Color/Maroon";
 export const ColorTan = "Color/Tan";
+export const ColorRose = "Color/Rose";
 
 // Discord Botの初期化
 export const client = new Client({
@@ -60,6 +61,7 @@ client.once("ready", async () => {
     await CreateRole(ColorCoral,0xFD5E5E)
     await CreateRole(ColorMaroon,0xA13131)
     await CreateRole(ColorTan,0x474939)
+    await CreateRole(ColorRose,0xE04462)
   }
 
   console.log("This bot launched." +
