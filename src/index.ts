@@ -39,11 +39,6 @@ export const client = new Client({
   ],
 });
 
-client.user?.setPresence({
-  activities: [{ name: "待機中...", type: ActivityType.Custom }]
-});
-
-
 client.once("ready", async () => {
   //init
   if (!(await RoleExists(MarkerDiedPlayer))) {
@@ -69,6 +64,10 @@ client.once("ready", async () => {
   console.log("This bot launched." +
     "Version : 0.0.1b"
   );
+
+  client.user?.setPresence({
+    activities: [{ name: "待機中...", type: ActivityType.Custom }]
+  });
 });
 
 client.on("messageCreate", async (message) => {
