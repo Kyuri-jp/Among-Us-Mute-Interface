@@ -1,11 +1,15 @@
 import { OmitPartialGroupDMChannel, Message } from "discord.js";
-import { OnDiscuss } from "../../amongus/voice/OnDiscuss";
-import { GetRole } from "../../guild/Role";
+import { Discussing } from "../../au/voice/Discussing";
+import { GetRoleData } from "../../guild/Role";
+import { CommandBase } from "../interfaces/CommandBase";
+import { MarkerDiedPlayer } from "../..";
 
-export async function RunOnDiscussCommand(args:string[],message: OmitPartialGroupDMChannel<Message<boolean>>,diedPlayerRole:string) {
-    if (args.length < 1) {
-        console.error("Channel id is incorrect.");
+export class OnDiscuss implements CommandBase {
+    async Run(args: string[], message: OmitPartialGroupDMChannel<Message<boolean>>) {
+        if (args.length < 1) {
+            console.error("Channel id is incorrect.");
+        }
+        await Discussing(args[1], await GetRoleData(MarkerDiedPlayer));
+        message.channel.send("On Discussed")
     }
-    await OnDiscuss(args[1], await GetRole(diedPlayerRole));
-    message.channel.send("On Discussed")
 }

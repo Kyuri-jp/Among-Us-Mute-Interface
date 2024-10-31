@@ -1,43 +1,29 @@
 import { Message, OmitPartialGroupDMChannel } from "discord.js";
-import { RunMuteCommand } from "./voice/Mute";
-import { RunDeafCommand } from "./voice/Deaf";
-import { RunUndeafCommand } from "./voice/Undeaf";
-import { RunUnmuteCommand } from "./voice/Unmute";
-import { RunOnGameCommand } from "./voice/OnGame";
-import { MarkerDiedPlayer } from "..";
-import { RunOnDiscussCommand } from "./voice/OnDiscuss";
-import { RunResetCommand } from "./voice/Reset";
-import { RunDiedCommand } from "./voice/Died";
+import { CommandBase } from "./interfaces/CommandBase";
+import { Mute } from "./voice/Mute";
+import { Deaf } from "./voice/Deaf";
+import { OnGame } from "./voice/OnGame";
+import { OnDiscuss } from "./voice/OnDiscuss";
+import { Died } from "./voice/Died";
+import { Reset } from "./voice/Reset";
+import { Undeaf } from "./voice/Undeaf";
+import { Unmute } from "./voice/Unmute";
+
+const commands = new Map<string, CommandBase>();
+commands.set("mute", new Mute);
+commands.set("unmute", new Unmute);
+commands.set("deaf", new Deaf);
+commands.set("undeaf", new Undeaf);
+commands.set("reset", new Reset);
+commands.set("died", new Died);
+commands.set("ongame", new OnGame);
+commands.set("ondiscuss", new OnDiscuss);
 
 export async function CommandsGateway(args: string[], message: OmitPartialGroupDMChannel<Message<boolean>>) {
-    switch (args[0]) {
-        case "mute":
-            await RunMuteCommand(args, message)
-            break;
-        case "unmute":
-            await RunUnmuteCommand(args, message)
-            break;
-        case "deaf":
-            await RunDeafCommand(args, message);
-            break;
-        case "undeaf":
-            await RunUndeafCommand(args, message);
-            break;
-        case "ongame":  
-            await RunOnGameCommand(args, message, MarkerDiedPlayer);
-            break;
-        case "ondiscuss":
-            await RunOnDiscussCommand(args, message, MarkerDiedPlayer);
-            break;
-        case "died":
-            await RunDiedCommand(args,message)
-            break;
-        case "reset":
-            await RunResetCommand(args, message,MarkerDiedPlayer);
-            break;
-        default:
-            console.warn(`${args[0]} was not found in commands.`);
-            message.channel.send(`${args[0]} was not found in commands.`);
-            break;
+    if (!Array.from(commands.keys()).includes(args[0])) {
+        console.warn(`${args[0]} was not found in commands.`);
+        message.channel.send(`${args[0]} was not found in commands.`);
+        return;
     }
+    commands.get(args[0])?.Run(args, message);
 }

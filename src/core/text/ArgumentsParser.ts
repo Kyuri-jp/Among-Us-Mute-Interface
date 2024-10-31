@@ -2,7 +2,7 @@ export function ArgumentsParser(content: string, prefix: string, separator: stri
     if (!content.includes(prefix)) {
         console.warn("the message is not include prefix.")
         return [];
-    }
+    } 
     const args = content
         .trim()
         .split(separator)
