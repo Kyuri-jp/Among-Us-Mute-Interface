@@ -19,7 +19,7 @@ export async function GetUserRole(member: GuildMember) {
 }
 
 export async function RoleExists(roleName: string) {
-    return (await guild).roles.cache.has(roleName)
+    return (await guild).roles.cache.some(role => role.name === roleName);
 }
 
 export async function CreateRole(roleName: string, color: number) {

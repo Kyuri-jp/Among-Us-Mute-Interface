@@ -100,4 +100,4 @@ client.login(process.env.TOKEN)
   .then(() => console.log("Logged in successfully."))
   .catch(error => console.error("Login failed:", error));
 
-export const guild = client.guilds.fetch("1298249409712099378")
+export const guild = client.guilds.fetch(process.env.GUILD!)
