@@ -4,6 +4,7 @@ export function ArgumentsParser(content: string, prefix: string, separator: stri
         return [];
     } 
     const args = content
+        .replace(/\s+/g, " ")
         .split(separator)
         .map(item => item.trim());
         args[0] = args[0].slice(prefix.length).toLowerCase();
