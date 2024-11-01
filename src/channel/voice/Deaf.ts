@@ -4,29 +4,26 @@ import { HasRole } from '../../guild/Role';
 import { GetUsers } from './Property';
 
 export async function DeafAllUser(channelID: string, selectRole?: Role, ignore?: boolean) {
-    await DeafControlAllUser(channelID, true, selectRole, ignore);
+    await ControlDeafAllUser(channelID, true, selectRole, ignore);
 }
 
 export async function UndeafAllUser(channelID: string, selectRole?: Role, ignore?: boolean) {
-    await DeafControlAllUser(channelID, false, selectRole, ignore);
+    await ControlDeafAllUser(channelID, false, selectRole, ignore);
 }
 
-async function DeafControlAllUser(channelID: string, type: boolean, selectRole?: Role, ignore?: boolean) {
+async function ControlDeafAllUser(channelID: string, type: boolean, selectRole?: Role, ignore?: boolean) {
     for (const [, member] of await GetUsers(channelID)) {
-        if (ignore === undefined) {
-            if (!selectRole) {
+        const hasRole = selectRole && await HasRole(member, selectRole.name);
+        
+        if (ignore) {
+            if (selectRole && !hasRole) {
                 await member.voice.setDeaf(type);
-                console.info(`${member.displayName} was controled deaf to ${type}`)
-            } else if (selectRole && await HasRole(member, selectRole.name)) {
-                await member.voice.setDeaf(type);
+                console.info(`${member.displayName} was controlled deaf to ${type}`);
             }
         } else {
-            console.warn("Ingored Deaf")
-            if (!selectRole){
-                console.warn("Role is undefined")
-            }else if (!await HasRole(member, selectRole.name)) {
+            if (!selectRole || hasRole) {
                 await member.voice.setDeaf(type);
-                console.info(`${member.displayName} was controled deaf to ${type}`)
+                console.info(`${member.displayName} was controlled deaf to ${type}`);
             }
         }
     }

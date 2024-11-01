@@ -11,25 +11,29 @@ dotenv.config()
 
 //core
 const prefix = "m!"
-export const MarkerDiedPlayer = "Marker/DiedPlayer";
-export const ColorRed = "Color/Red";
-export const ColorBlue = "Color/Blue";
-export const ColorYellow = "Color/Yellow";
-export const ColorGreen = "Color/Green";
-export const ColorCyan = "Color/Cyan";
-export const ColorLime = "Color/Lime";
-export const ColorOrange = "Color/Orange";
-export const ColorWhite = "Color/White";
-export const ColorBrown = "Color/Brown";
-export const ColorPink = "Color/Pink";
-export const ColorBlack = "Color/Black";
-export const ColorGray = "Color/Gray";
-export const ColorPurple = "Color/Purple";
-export const ColorBanana = "Color/Banana";
-export const ColorCoral = "Color/Coral";
-export const ColorMaroon = "Color/Maroon";
-export const ColorTan = "Color/Tan";
-export const ColorRose = "Color/Rose";
+export const MarkerRoles = {
+  DiedPlayer: "Marker/DiedPlayer"
+}
+
+export const ColorRoles = {
+  Red: "Color/Red",
+  Blue: "Color/Blue",
+  Green: "Color/Green",
+  Yellow: "Color/Yellow",
+  White: "Color/White",
+  Black: "Color/Black",
+  Gray: "Color/Gray",
+  Lime: "Color/Lime",
+  Pink: "Color/Pink",
+  Brown: "Color/Brown",
+  Orange: "Color/Orange",
+  Cyan: "Color/Cyan",
+  Banana: "Color/Banana",
+  Coral: "Color/Coral",
+  Maroon: "Color/Maroon",
+  Tan: "Color/Tan",
+  Rose: "Color/Rose",
+};
 
 // Discord Botの初期化
 export const client = new Client({
@@ -42,25 +46,33 @@ export const client = new Client({
 });
 
 client.once("ready", async () => {
-  //init
-  await CreateRole(MarkerDiedPlayer, Colors.DarkRed)
-  await CreateRole(ColorRed, Colors.Red)
-  await CreateRole(ColorBlue, Colors.Blue)
-  await CreateRole(ColorGreen, Colors.Green)
-  await CreateRole(ColorYellow, Colors.Yellow)
-  await CreateRole(ColorWhite, Colors.White)
-  await CreateRole(ColorBlack, Colors.NotQuiteBlack)
-  await CreateRole(ColorGray, Colors.Grey)
-  await CreateRole(ColorLime, 0x94FE31)
-  await CreateRole(ColorPink, Colors.LuminousVividPink)
-  await CreateRole(ColorBrown, 0x3C0000)
-  await CreateRole(ColorOrange, Colors.Orange)
-  await CreateRole(ColorCyan, Colors.Aqua)
-  await CreateRole(ColorBanana, 0xFEE360)
-  await CreateRole(ColorCoral, 0xFD5E5E)
-  await CreateRole(ColorMaroon, 0xA13131)
-  await CreateRole(ColorTan, 0x474939)
-  await CreateRole(ColorRose, 0xE04462)
+  const rolesToCreate = [
+    { name: MarkerRoles.DiedPlayer, color: Colors.DarkRed },
+    { name: ColorRoles.Red, color: Colors.Red },
+    { name: ColorRoles.Blue, color: Colors.Blue },
+    { name: ColorRoles.Green, color: Colors.Green },
+    { name: ColorRoles.Yellow, color: Colors.Yellow },
+    { name: ColorRoles.White, color: Colors.White },
+    { name: ColorRoles.Black, color: Colors.NotQuiteBlack },
+    { name: ColorRoles.Gray, color: Colors.Grey },
+    { name: ColorRoles.Lime, color: 0x94FE31 },
+    { name: ColorRoles.Pink, color: Colors.LuminousVividPink },
+    { name: ColorRoles.Brown, color: 0x3C0000 },
+    { name: ColorRoles.Orange, color: Colors.Orange },
+    { name: ColorRoles.Cyan, color: Colors.Aqua },
+    { name: ColorRoles.Banana, color: 0xFEE360 },
+    { name: ColorRoles.Coral, color: 0xFD5E5E },
+    { name: ColorRoles.Maroon, color: 0xA13131 },
+    { name: ColorRoles.Tan, color: 0x474939 },
+    { name: ColorRoles.Rose, color: 0xE04462 },
+  ];
+
+  for (const { name, color } of rolesToCreate) {
+    await CreateRole(name, color)
+    .catch(error =>{
+      console.error(error);
+    });
+  }
 
   console.log("This bot launched." +
     "Version : 0.2.0"
@@ -74,6 +86,7 @@ client.once("ready", async () => {
 client.on("messageCreate", async (message) => {
   if (message.author.id === client.user?.id) return;
   console.info(`Message caught : ${message.content}`);
+
   const args = ArgumentsParser(message.content, prefix, "/");
   console.info(`Argument is : ${args}`);
   try {
@@ -83,7 +96,8 @@ client.on("messageCreate", async (message) => {
   }
 });
 
-client.login(process.env.TOKEN);
-console.log("Logined");
+client.login(process.env.TOKEN)
+  .then(() => console.log("Logged in successfully."))
+  .catch(error => console.error("Login failed:", error));
 
-export const guild = client.guilds.fetch("1298249409712099378");
+export const guild = client.guilds.fetch("1298249409712099378")

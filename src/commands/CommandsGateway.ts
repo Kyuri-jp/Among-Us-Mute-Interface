@@ -10,15 +10,16 @@ import { Mute } from './voice/Mute';
 import { Undeaf } from './voice/Undeaf';
 import { Unmute } from './voice/Unmute';
 
-const commands = new Map<string, CommandBase>();
-commands.set("mute", new Mute);
-commands.set("unmute", new Unmute);
-commands.set("deaf", new Deaf);
-commands.set("undeaf", new Undeaf);
-commands.set("reset", new Reset);
-commands.set("died", new Died);
-commands.set("ongame", new OnGame);
-commands.set("ondiscuss", new OnDiscuss);
+const commands = new Map<string, CommandBase>([
+    ["mute", new Mute],
+    ["unmute", new Unmute],
+    ["deaf", new Deaf],
+    ["undeaf", new Undeaf],
+    ["reset", new Reset],
+    ["died", new Died],
+    ["ongame", new OnGame],
+    ["ondiscuss", new OnDiscuss]
+]);
 
 export async function CommandsGateway(args: string[], message: OmitPartialGroupDMChannel<Message<boolean>>) {
     if (!Array.from(commands.keys()).includes(args[0])) {
