@@ -17,8 +17,11 @@ export class Reset implements CommandBase {
         const role = await GetRoleData(MarkerRoles.DiedPlayer);
         await Promise.all([UnmuteAllUser(channelID), UndeafAllUser(channelID)]);
         for (const [, member] of await GetUsers((channelID))) {
-            await member.roles.remove(role)
-            console.info(`${member.displayName} was removed died role.`)
+            if (member.roles.cache.has(role.id)){
+                await member.roles.remove(role).then(()=>{
+                    console.info(`${member.displayName} was removed died role.`)
+                })
+            }
         }
         await message.channel.send("Reset roles and voice state.");
         client.user?.setPresence({
