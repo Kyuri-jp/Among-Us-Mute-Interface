@@ -4,7 +4,9 @@ import { DeafAllUser, UndeafAllUser } from '../../channel/voice/Deaf';
 import { UnmuteAllUser } from '../../channel/voice/Mute';
 
 export async function Gaming(channelID: string, diedPlayersRole?: Role) {
-    await DeafAllUser(channelID, diedPlayersRole, true);
-    await UnmuteAllUser(channelID, diedPlayersRole);
-    await UndeafAllUser(channelID, diedPlayersRole);
+    await Promise.all([
+        DeafAllUser(channelID, diedPlayersRole, true),
+        UnmuteAllUser(channelID, diedPlayersRole),
+        UndeafAllUser(channelID, diedPlayersRole)
+    ])
 } 
