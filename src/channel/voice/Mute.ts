@@ -13,17 +13,19 @@ export async function UnmuteAllUser(channelID: string, selectRole?: Role, ignore
 
 async function ControlMuteAllUser(channelID: string, type: boolean, selectRole?: Role, ignore?: boolean) {
     for (const [, member] of await GetUsers(channelID)) {
-        const hasRole = selectRole && await HasRole(member, selectRole.name);
-        
-        if (ignore) {
-            if (selectRole && !hasRole) {
-                await member.voice.setMute(type);
-                console.info(`${member.displayName} was controlled Mute to ${type}`);
-            }
-        } else {
-            if (!selectRole || hasRole) {
-                await member.voice.setMute(type);
-                console.info(`${member.displayName} was controlled Mute to ${type}`);
+        if (member.voice.mute !== !type) {
+            const hasRole = selectRole && await HasRole(member, selectRole.name);
+
+            if (ignore) {
+                if (selectRole && !hasRole) {
+                    await member.voice.setMute(type);
+                    console.info(`${member.displayName} was controlled Mute to ${type}`);
+                }
+            } else {
+                if (!selectRole || hasRole) {
+                    await member.voice.setMute(type);
+                    console.info(`${member.displayName} was controlled Mute to ${type}`);
+                }
             }
         }
     }
