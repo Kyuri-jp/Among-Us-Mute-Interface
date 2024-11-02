@@ -71,9 +71,9 @@ client.once("ready", async () => {
 
   for (const { name, color } of rolesToCreate) {
     await CreateRole(name, color)
-    .catch(error =>{
-      console.error(error);
-    });
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   console.log("This bot launched." +
@@ -91,11 +91,9 @@ client.on("messageCreate", async (message) => {
 
   const args = ArgumentsParser(message.content, prefix, " ");
   console.info(`Argument is : ${args}`);
-  try {
-    await MessageCreated(prefix, args, message);
-  } catch (error) {
+  await MessageCreated(prefix, args, message).catch(error => {
     console.error(error);
-  }
+  });
 });
 
 client.login(process.env.TOKEN)
