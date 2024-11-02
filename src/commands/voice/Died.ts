@@ -8,6 +8,10 @@ import { CommandBase } from '../interfaces/CommandBase';
 
 export class Died implements CommandBase {
     async Run(args: string[], message: OmitPartialGroupDMChannel<Message<boolean>>) {
+        if (args.length < 3) {
+            await message.channel.send("Please set channel id and role.")
+            return;
+        }
         const role = await GetRoleData(MarkerRoles.DiedPlayer);
         const users = await GetUsers(args[1]);
         const colorRole = "Color/" + ToShiftedUpperCase(args[2]);
