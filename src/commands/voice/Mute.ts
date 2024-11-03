@@ -5,7 +5,7 @@ import { CommandBase } from '../interfaces/CommandBase';
 
 export class Mute implements CommandBase {
     async Run(args: string[], message: OmitPartialGroupDMChannel<Message<boolean>>) {
-        if (args.length < 2) {
+        if (!args[1]) {
             await message.channel.send("Please set channel id")
             return;
         }

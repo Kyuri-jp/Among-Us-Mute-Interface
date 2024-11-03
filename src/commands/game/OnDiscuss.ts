@@ -7,7 +7,7 @@ import { CommandBase } from '../interfaces/CommandBase';
 
 export class OnDiscuss implements CommandBase {
     async Run(args: string[], message: OmitPartialGroupDMChannel<Message<boolean>>) {
-        if (args.length < 2) {
+        if (!args[1]) {
             message.channel.send("Please set channel id")
             return;
         }
