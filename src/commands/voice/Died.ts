@@ -8,23 +8,25 @@ import { CommandBase } from '../interfaces/CommandBase';
 
 export class Died implements CommandBase {
     async Run(args: string[], message: OmitPartialGroupDMChannel<Message<boolean>>) {
-        if (!args[1]) {
+        const channelId = args[1];
+        const selectedRole = args[2]
+        if (!channelId) {
             await message.channel.send("Please set channel id.")
             return;
         }
-        if (!args[2]){            
+        if (!selectedRole) {
             await message.channel.send("Please set role.")
             return;
         }
-        const role = await GetRoleData(MarkerRoles.DiedPlayer);
-        const users = await GetUsers(args[1]);
-        const colorRole = "Color/" + ToShiftedUpperCase(args[2]);
+        const diedPlayerRole = await GetRoleData(MarkerRoles.DiedPlayer)
+        const users = await GetUsers(channelId)
+        const colorRole = "Color/" + ToShiftedUpperCase(selectedRole);
 
         const addedMembers = [];
 
         for (const [, member] of users) {
             if (await HasRole(member, colorRole)) {
-                await member.roles.add(role.id);
+                await member.roles.add(diedPlayerRole.id);
                 addedMembers.push(member.displayName);
                 console.info(`${member.displayName} was added died role.`);
             }
@@ -32,7 +34,7 @@ export class Died implements CommandBase {
 
         if (addedMembers.length > 0) {
             await message.channel.send(`Role added to: ${addedMembers.join(', ')}`);
-        }else{
+        } else {
             await message.channel.send("Player was not found.")
         }
     }
