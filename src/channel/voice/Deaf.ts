@@ -16,7 +16,7 @@ async function ControlDeafAllUser(channelID: string, type: boolean, selectRole?:
     
     for (const [, member] of await GetUsers(channelID)) {
         if (member.voice.deaf !== type) {
-            const hasRole = selectRole && await HasRole(member, selectRole.name);
+            const hasRole = selectRole && await HasRole(member, selectRole);
 
             if (ignore) {
                 if (selectRole && !hasRole) {

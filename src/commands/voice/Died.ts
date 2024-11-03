@@ -20,7 +20,7 @@ export class Died implements CommandBase {
         }
         const diedPlayerRole = await GetRoleData(MarkerRoles.DiedPlayer)
         const users = await GetUsers(channelId)
-        const colorRole = "Color/" + ToShiftedUpperCase(selectedRole);
+        const colorRole = await GetRoleData("Color/" + ToShiftedUpperCase(selectedRole));
 
         const addedMembers = [];
 

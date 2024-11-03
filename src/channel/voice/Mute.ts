@@ -13,10 +13,9 @@ export async function UnmuteAllUser(channelID: string, selectRole?: Role, ignore
 
 async function ControlMuteAllUser(channelID: string, type: boolean, selectRole?: Role, ignore?: boolean) {
     const promises = [];
-    
     for (const [, member] of await GetUsers(channelID)) {
         if (member.voice.mute !== type) {
-            const hasRole = selectRole && await HasRole(member, selectRole.name);
+            const hasRole = selectRole && await HasRole(member, selectRole);
 
             if (ignore) {
                 if (selectRole && !hasRole) {

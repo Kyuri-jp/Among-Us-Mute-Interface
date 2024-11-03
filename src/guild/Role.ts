@@ -1,4 +1,4 @@
-import { GuildMember } from 'discord.js';
+import { GuildMember, Role } from 'discord.js';
 
 import { guild } from '../';
 
@@ -32,11 +32,10 @@ export async function CreateRole(roleName: string, color: number) {
     }
 }
 
-export async function HasRole(member: GuildMember, roleName: string): Promise<boolean> {
-    const role = await GetRoleData(roleName);
+export async function HasRole(member: GuildMember, role: Role): Promise<boolean> {
 
-    if (!role) {
-        console.error(`Selected role : ${roleName} was not found.`);
+    if ((await guild).roles.cache.has(role.name)) {
+        console.error(`Selected role : ${role.name} was not found.`);
         return false;
     }
     
