@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-export function GetUserFromMention(message: Message) {
+export function GetUsersFromMention(message: Message) {
     // メッセージ内のメンションを取得
     const mentionedUsers = message.mentions.users;
 
